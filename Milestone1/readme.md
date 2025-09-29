@@ -21,8 +21,8 @@ This notebook provides a comprehensive analysis of Python code snippets, employi
 - [Multi-Model Code Explainer Module](#section-15--multi-model-code-explainer-module)
 - [Explanation Difference Visualization](#section-16--explanation-difference-visualization)
 - [Wordcloud for three models](#section-17--wordcloud-for-three-models)
-- [PCA of Code Snippet Embeddings](#section-18--pca-of-code-snippet-embeddings)
-- [Keyword Frequency Heatmap](#section-19--keyword-frequency-heatmap)
+- [PCA of Code Snippet Embeddings](#section-18--keyword-frequency-heatmap)
+- [Keyword Frequency Heatmap](#section-19--pca-of-code-snippet-embeddings)
 
 
 ## How to Run
