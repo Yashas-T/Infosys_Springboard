@@ -21,8 +21,7 @@ This notebook provides a comprehensive analysis of Python code snippets, employi
 - [Multi-Model Code Explainer Module](#section-15--multi-model-code-explainer-module)
 - [Explanation Difference Visualization](#section-16--explanation-difference-visualization)
 - [Wordcloud for three models](#section-17--wordcloud-for-three-models)
-- [Keyword Frequency Heatmap](#section-18--keyword-frequency-heatmap)
-- [PCA of Code Snippet Embeddings](#section-19--pca-of-code-snippet-embeddings)
+- [PCA of Code Snippet Embeddings](#section-18--pca-of-code-snippet-embeddings)
 
 
 ## How to Run
@@ -49,5 +48,5 @@ This notebook provides a comprehensive analysis of Python code snippets, employi
 - **Section 15: Multi-Model Code Explainer Module**: Defines a class to generate code explanations using multiple pre-trained SentenceTransformer models and compares their outputs.
 - **Section 16: Explanation Difference Visualization**: Visualizes the number of lines for which different models provided different explanations using a bar chart.
 - **Section 17: Wordcloud for three models**: Generates word clouds for the explanations produced by each SentenceTransformer model to visualize the most frequent terms used.
-- **Section 18: Keyword Frequency Heatmap**: Visualizes the frequency of keywords across different code snippets using a heatmap.
-- **Section 19: PCA of Code Snippet Embeddings**: Performs Principal Component Analysis (PCA) on the embeddings of the code snippets to visualize them in a reduced-dimensionality space.
+- **Section 18: PCA of Code Snippet Embeddings**: Performs Principal Component Analysis (PCA) on the embeddings of the code snippets to visualize them in a reduced-dimensionality space.
+ 
