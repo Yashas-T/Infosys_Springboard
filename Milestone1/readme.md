@@ -1,4 +1,4 @@
-# CodeGenie AI Explainer and Code Generator - Milestone 1
+# CodeGenie AI Explainer and Code Generator
 
 ## Project Context
 
@@ -20,8 +20,9 @@ This notebook (Milestone 1) focuses on foundational static analysis techniques. 
 ## Table of Contents
 
 1.  [Notebook Analysis Summary](#1-notebook-analysis-summary)
-2.  [Conclusion for Milestone 1](#2-conclusion-for-milestone-1)
-3.  [How to Run](#3-how-to-run)
+2.  [Comparison of AI Models Used](#2-comparison-of-the-Embedding-models-used)
+3.  [Conclusion for Milestone 1](#3-conclusion-for-milestone-1)
+4.  [How to Run](#4-how-to-run)
 
 
 
@@ -59,7 +60,23 @@ Here is a breakdown of the key sections within the Jupyter Notebook and their fu
 
 ---
 
-## 2. Conclusion for Milestone 1
+## 2. Comparison of the Embedding Models Used
+
+The `CodeExplainer` module in this notebook uses three different pre-trained **SentenceTransformer** models. Their selection demonstrates the trade-offs between performance, speed, size, and the style of generated text. The observations below are derived directly from the notebook's implementation and outputs (templates, word clouds, difference counts).
+
+| Model Name | Architecture | Key Characteristics | Performance vs. Speed | Embedding Size | Explanation Style (Observed) | Use Case |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`all-MiniLM-L12-v2`** | Distilled Transformer | Very small and extremely fast; optimized for speed with good quality. | **Fastest.** Performance is generally lower than the other two. | 384 dimensions | **Direct and literal.** Uses core action verbs like "Assigns" and "Outputs." | Ideal for real-time applications or environments with limited computational resources. |
+| **`all-distilroberta-v1`** | Distilled RoBERTa | A good balance between speed and performance. | **Balanced.** Faster than MPNet but slower than MiniLM. | 768 dimensions | **Balanced and descriptive.** Focuses on the "what" (e.g., "Creates a function for computation"). | A great general-purpose choice where both speed and quality are important. |
+| **`all-mpnet-base-v2`** | MPNet | Offers the highest quality and most nuanced embeddings. | **Highest Performance.** The slowest and most resource-intensive. | 768 dimensions | **Action-oriented and formal.** Focuses on the "how" (e.g., "Sets up function to perform a task"). | Best for tasks requiring maximum accuracy where speed is less critical. |
+
+### Summary of Model Differences
+
+The analysis in the notebook (specifically the word clouds and difference visualizations) shows that while all three models produce useful explanations, their output varies in vocabulary and nuance. The **MPNet** model is likely to capture more subtle semantic relationships, whereas **MiniLM** provides a faster, lightweight alternative. This comparison is a crucial step in understanding which model would be best suited for the final **CodeGenie** tool, depending on whether the priority is speed or accuracy.
+
+---
+
+## 3. Conclusion 
 
 The 1st milestone project successfully demonstrates a multi-faceted approach to static Python code analysis. By combining AST parsing, tokenization, and modern NLP techniques, it was possible to extract and quantify a rich set of structural and semantic features from a collection of code snippets.
 
@@ -67,7 +84,7 @@ The visualizations provide clear and intuitive insights into the code's composit
 
 ---
 
-## 3. How to Run
+## 4. How to Run
 
 1.  Ensure you have Python 3 and a virtual environment set up.
 2.  Install the required dependencies by running the following commands:
@@ -77,4 +94,4 @@ The visualizations provide clear and intuitive insights into the code's composit
     pip install scikit-learn pandas numpy
     pip install matplotlib wordcloud nltk
     ```
-3.  Execute the cells in the Jupyter Notebook `Milestone_1 (1).ipynb` sequentially. The notebook will automatically download the necessary NLTK data and pre-trained models on its first run.
+3.  Execute the cells in the Jupyter Notebook `Milestone_1.ipynb` sequentially. The notebook will automatically download the necessary NLTK data and pre-trained models on its first run.
