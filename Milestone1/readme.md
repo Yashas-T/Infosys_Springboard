@@ -1,52 +1,83 @@
-# Code Analysis and Explanation with Multiple Models
+# CodeGenie AI Explainer and Code Generator - Milestone 1
 
-This notebook provides a comprehensive analysis of Python code snippets, employing techniques from AST parsing and tokenization to generating explanations using different SentenceTransformer models. It also includes various visualizations to understand code characteristics and compare the outputs of different models.
+## Project Context
+
+This project was created for the Infosys Virtual Springboard Internship 6.0 and represents the first of four milestones in the development of the "CodeGenie AI" tool.
+
+## Project Overview
+
+### The Goal
+The primary objective of the CodeGenie project is to build an AI tool that can explain code snippets with a deep, contextual understanding of the entire project they belong to.
+
+### The Problem
+Standard AI code assistants possess general programming knowledge but lack specific context about an individual's unique codebase. This often results in generic or incorrect suggestions.
+
+### The Solution
+CodeGenie will use a technique called Retrieval-Augmented Generation (RAG). This approach gives the AI "open-book" access to a local codebase, enabling it to generate explanations that are highly relevant and accurate.
+
+### Objective of this Milestone
+This notebook (Milestone 1) focuses on foundational static analysis techniques. It demonstrates how to parse Python code to extract structural features, analyze token patterns, generate rule-based and model-based explanations, and visualize the code's characteristics. These steps are crucial for understanding and processing the source code that will later be used in the RAG pipeline.
+
+
 
 ## Table of Contents
 
-- [Setup & Imports](#section-1--setup--imports)
-- [Sample Code](#section-2--sample-code)
-- [Parse AST](#section-3--parse-ast)
-- [Extract Functions](#section-4--extract-functions)
-- [Extract Classes](#section-5--extract-classes)
-- [Extract Imports](#section-6--extract-imports)
-- [Tokenize Code](#section-7--tokenize-code)
-- [Token Patterns](#section-8--token-patterns)
-- [Line-by-Line Explanation](#section-9--line-by-line-explanation)
-- [Keyword Frequency Visualization](#section-10--keyword-frequency-visualization)
-- [Operator Frequency Visualization](#section-11--operator-frequency-visualization)
-- [Token Type Distribution](#section-12--token-type-distribution)
-- [Line Length Distribution](#section-13--line-length-distribution)
-- [Summary Report](#section-14--summary-report)
-- [Multi-Model Code Explainer Module](#section-15--multi-model-code-explainer-module)
-- [Explanation Difference Visualization](#section-16--explanation-difference-visualization)
-- [Wordcloud for three models](#section-17--wordcloud-for-three-models)
-- [PCA of Code Snippet Embeddings](#section-18--pca-of-code-snippet-embeddings)
+1.  [Notebook Analysis Summary](#1-notebook-analysis-summary)
+2.  [Conclusion for Milestone 1](#2-conclusion-for-milestone-1)
+3.  [How to Run](#3-how-to-run)
 
 
-## How to Run
 
-1. Open the notebook in Google Colab.
-2. Run all the cells in sequence. The necessary libraries will be installed automatically.
+## 1. Notebook Analysis Summary
 
-## Notebook Sections Explained
+Here is a breakdown of the key sections within the Jupyter Notebook and their functions.
 
-- **Section 1: Setup & Imports**: Installs required libraries and imports necessary modules for code analysis and visualization.
-- **Section 2: Sample Code**: Defines the list of Python code snippets that will be analyzed. You can replace these with your own code.
-- **Section 3: Parse AST**: Parses each code snippet into its Abstract Syntax Tree (AST) representation for structural analysis.
-- **Section 4: Extract Functions**: Identifies and extracts information about functions defined in the code snippets.
-- **Section 5: Extract Classes**: Identifies and extracts information about classes defined in the code snippets.
-- **Section 6: Extract Imports**: Identifies and extracts information about imported modules in the code snippets.
-- **Section 7: Tokenize Code**: Breaks down the code into individual tokens (words, operators, etc.) for further analysis.
-- **Section 8: Token Patterns**: Analyzes the frequency of keywords and operators used in the code.
-- **Section 9: Line-by-Line Explanation**: Generates a basic explanation for each significant line of code.
-- **Section 10: Keyword Frequency Visualization**: Visualizes the frequency of Python keywords using a bar chart.
-- **Section 11: Operator Frequency Visualization**: Visualizes the frequency of operators used in the code using a bar chart.
-- **Section 12: Token Type Distribution**: Shows the distribution of different token types (keywords, identifiers, operators, etc.) in a pie chart.
-- **Section 13: Line Length Distribution**: Displays the distribution of line lengths in the code using a histogram.
-- **Section 14: Summary Report**: Provides a summary of key metrics from the code analysis, such as the total number of functions, classes, imports, and tokens.
-- **Section 15: Multi-Model Code Explainer Module**: Defines a class to generate code explanations using multiple pre-trained SentenceTransformer models and compares their outputs.
-- **Section 16: Explanation Difference Visualization**: Visualizes the number of lines for which different models provided different explanations using a bar chart.
-- **Section 17: Wordcloud for three models**: Generates word clouds for the explanations produced by each SentenceTransformer model to visualize the most frequent terms used.
-- **Section 18: PCA of Code Snippet Embeddings**: Performs Principal Component Analysis (PCA) on the embeddings of the code snippets to visualize them in a reduced-dimensionality space.
- 
+### **Setup & Data**
+* **1. Setup & Imports**: Prepares the programming environment by installing and importing necessary Python libraries for parsing (`ast`), data handling (`pandas`), plotting (`matplotlib`), and natural language processing (`sentence-transformers`).
+* **2. Sample Code**: Defines the dataset for the analysis, which consists of 20 simple Python code snippets that serve as the input for all subsequent analysis.
+
+### **Structural Analysis (AST)**
+* **3. Parse AST**: Converts each code snippet into an Abstract Syntax Tree (AST), which is a tree representation of the code's structure that allows for analysis without execution.
+* **4. Extract Functions**: Inspects the ASTs to find all function definitions and extracts key information like the function's name, arguments, and whether it has a return statement.
+* **5. Extract Classes**: Traverses the ASTs to identify any class definitions. For this dataset, none were found.
+* **6. Extract Imports**: Analyzes the ASTs to find all `import` statements, identifying the external libraries each snippet depends on.
+
+### **Tokenization & Pattern Analysis**
+* **7. Tokenize Code**: Breaks down the source code into its fundamental components, called **tokens** (e.g., variable names, keywords, operators), and filters out non-essential items like comments.
+* **8. Token Patterns**: Counts the frequency of specific token types, such as Python **keywords** (`if`, `for`) and **operators** (`=`, `+`), to provide a statistical overview.
+
+### **Code Explanation & Visualization**
+* **9. Line-by-Line Explanation**: Implements a simple, rule-based function to generate a plain-English explanation for each line of code based on pattern matching.
+* **10. Keyword Frequency Visualization**: Uses `matplotlib` to create a **bar chart** that visually represents the frequency of each keyword found in the code.
+* **11. Operator Frequency Visualization**: Generates a **bar chart** to visualize the frequency of different operators.
+* **12. Token Type Distribution**: Classifies all tokens into four categories (`Identifier`, `Operator`, `Keyword`, `Other`) and creates a **pie chart** to show their proportions.
+* **13. Line Length Distribution**: Calculates the length of every line of code and plots a **histogram** to show the distribution of line lengths.
+* **14. Summary Report**: Compiles all key metrics (total functions, tokens, etc.) into a `pandas` DataFrame for a clean, tabular summary.
+
+### **Advanced Analysis & NLP Models**
+* **15. Multi-Model Code Explainer Module**: Introduces an advanced `CodeExplainer` class that uses three pre-trained **SentenceTransformer models** to generate varied, context-aware explanations. This is a foundational step for the project's goal of building a **Retrieval-Augmented Generation (RAG)** application.
+* **16. Explanation Difference Visualization**: Counts the number of lines where explanations from two different models (`MiniLM` and `DistilRoBERTa`) do not match and plots the results on a bar chart.
+* **17. Word Cloud for Three Models**: Generates a **word cloud** for the explanations from each AI model, offering insight into each model's descriptive style.
+* **18. PCA of Code Snippet Embeddings**: Uses **Principal Component Analysis (PCA)** to convert each snippet into a numerical vector (embedding). These are then plotted on a **scatterplot** to visualize the semantic similarity between the code snippets.
+
+---
+
+## 2. Conclusion for Milestone 1
+
+The 1st milestone project successfully demonstrates a multi-faceted approach to static Python code analysis. By combining AST parsing, tokenization, and modern NLP techniques, it was possible to extract and quantify a rich set of structural and semantic features from a collection of code snippets.
+
+The visualizations provide clear and intuitive insights into the code's composition, such as keyword frequency and line length distribution. The comparative analysis of different NLP models highlights the potential for generating diverse, context-sensitive code explanations, moving beyond simple rule-based systems. Finally, the PCA visualization of code embeddings effectively shows that code can be clustered based on its semantic meaning, opening up possibilities for tasks like code similarity detection and classification.
+
+---
+
+## 3. How to Run
+
+1.  Ensure you have Python 3 and a virtual environment set up.
+2.  Install the required dependencies by running the following commands:
+    ```bash
+    pip install astunparse tokenize-rt
+    pip install transformers sentence-transformers torch
+    pip install scikit-learn pandas numpy
+    pip install matplotlib wordcloud nltk
+    ```
+3.  Execute the cells in the Jupyter Notebook `Milestone_1 (1).ipynb` sequentially. The notebook will automatically download the necessary NLTK data and pre-trained models on its first run.
