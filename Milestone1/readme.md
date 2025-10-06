@@ -20,8 +20,8 @@ This notebook (Milestone 1) focuses on foundational static analysis techniques. 
 ## Table of Contents
 
 1.  [Notebook Analysis Summary](#1-notebook-analysis-summary)
-2.  [Comparison of AI Models Used](#2-comparison-of-the-Embedding-models-used)
-3.  [Conclusion for Milestone 1](#3-conclusion)
+2.  [Comparison of the Embedding Models Used](#2-comparison-of-the-Embedding-models-used)
+3.  [Conclusion](#3-conclusion)
 4.  [How to Run](#4-how-to-run)
 
 
