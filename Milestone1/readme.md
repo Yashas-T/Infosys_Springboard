@@ -12,9 +12,6 @@ The primary objective of the CodeGenie project is to build an AI tool that can e
 ### The Problem
 Standard AI code assistants possess general programming knowledge but lack specific context about an individual's unique codebase. This often results in generic or incorrect suggestions.
 
-### The Solution
-CodeGenie will use a technique called Retrieval-Augmented Generation (RAG). This approach gives the AI "open-book" access to a local codebase, enabling it to generate explanations that are highly relevant and accurate.
-
 ### Objective of this Milestone
 This notebook (Milestone 1) focuses on foundational static analysis techniques. It demonstrates how to parse Python code to extract structural features, analyze token patterns, generate rule-based and model-based explanations, and visualize the code's characteristics. These steps are crucial for understanding and processing the source code that will later be used in the RAG pipeline.
 
