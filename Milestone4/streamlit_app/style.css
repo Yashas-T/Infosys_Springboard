@@ -1,0 +1,76 @@
+/* Main container styling */
+.main {
+    background-color: #f0f2f6;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Custom button styling */
+.stButton>button {
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.stButton>button:hover {
+    background-color: #45a049;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* Chat message bubbles */
+.user-message {
+    background-color: #DCF8C6;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    color: black;
+}
+
+.bot-message {
+    background-color: #E8E8E8;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+}
+
+/* Code block styling */
+code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Header styling */
+h1, h2, h3 {
+    color: #333333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Metric card styling */
+[data-testid="stMetricValue"] {
+    font-size: 2rem;
+    color: #4CAF50;
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    font-weight: bold;
+    color: #333333;
+}

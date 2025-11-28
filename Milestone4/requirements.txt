@@ -1,0 +1,17 @@
+transformers
+accelerate
+torch
+streamlit
+pyngrok
+python-dotenv
+PyJWT
+vaderSentiment
+Pillow
+pandas
+matplotlib
+requests
+fastapi
+uvicorn
+nest_asyncio
+bitsandbytes
+sentencepiece

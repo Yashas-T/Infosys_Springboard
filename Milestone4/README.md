@@ -10,6 +10,66 @@
 
 ---
 
+## Codebase & Notebook Structure
+
+The CodeGenie project is originally encapsulated in a comprehensive Jupyter Notebook (`CodeGenie_Colab_Complete.ipynb`). For production and modularity, the codebase is structured into distinct modules, each handling specific aspects of the application logic. Below is a detailed description of the components extracted from the notebook:
+
+### Backend Modules (`backend/`)
+
+The core logic of the application resides in the `backend` directory. These modules handle everything from model inference to user authentication.
+
+*   **`model_loader.py`**:
+    *   **Purpose**: Manages the initialization and loading of Large Language Models (LLMs).
+    *   **Key Functionality**: Loads `google/gemma-2b-it`, `deepseek-ai/deepseek-coder-1.3b-instruct`, and `microsoft/phi-2` using the Hugging Face `transformers` library. It applies **4-bit quantization (NF4)** via `bitsandbytes` to optimize memory usage on GPUs. It also configures specific chat templates for models like Gemma.
+
+*   **`user_management_module.py`**:
+    *   **Purpose**: Handles all user-related operations, ensuring secure authentication and role management.
+    *   **Key Functionality**: Implements **RBAC (Role-Based Access Control)** for Admin and User roles. It manages user registration, login verification using **PBKDF2-HMAC-SHA256** password hashing, and secure session handling. It also includes advanced account recovery features like **Email OTP** (via SMTP) and encrypted security questions.
+
+*   **`code_generator_module.py`**:
+    *   **Purpose**: The engine behind the code generation feature.
+    *   **Key Functionality**: Interfaces with the loaded models to generate code based on user prompts. It constructs model-specific prompts (e.g., using chat templates for Gemma/DeepSeek or instruction formats for Phi-2) and handles the generation parameters (temperature, max tokens).
+
+*   **`code_explainer_module.py`**:
+    *   **Purpose**: Powers the "Code Explainer" feature.
+    *   **Key Functionality**: Wraps user-provided code in specialized prompt templates to generate explanations. It supports different explanation styles: "Beginner-Friendly", "Technical Deep-Dive", and "Step-by-Step Guide".
+
+*   **`admin_dashboard_module.py`**:
+    *   **Purpose**: Aggregates data for the Admin Dashboard.
+    *   **Key Functionality**: Reads from JSON log files (`user_history.json`, `feedback_log.json`, `users.json`) to compute analytics. It calculates metrics like total queries, average user rating, and active users. It also provides a **Global Search** function to query across all application data.
+
+*   **`feedback_analysis_module.py`**:
+    *   **Purpose**: Analyzes user feedback and manages user profiles.
+    *   **Key Functionality**: Uses **VADER Sentiment Analysis** to score user feedback. It also includes utilities for generating **Word Clouds** from feedback comments and creating/managing user avatars (including Gravatar integration).
+
+*   **`jwt_utils.py`**:
+    *   **Purpose**: Provides utilities for JSON Web Token (JWT) handling.
+    *   **Key Functionality**: Generates and verifies JWTs signed with `HS256` for stateless authentication.
+
+### Frontend Application (`streamlit_app/`)
+
+The user interface is built with Streamlit, providing a responsive and interactive experience.
+
+*   **`app.py`**:
+    *   **Purpose**: The main entry point for the frontend application.
+    *   **Key Functionality**: Orchestrates the UI flow. It handles:
+        *   **Authentication Views**: Login, Sign Up, and Forgot Password forms.
+        *   **Navigation**: Sidebar routing between CodeGenie, Code Explainer, Profile, and Admin Dashboard.
+        *   **State Management**: Manages user sessions and chat history using `st.session_state`.
+        *   **API Integration**: Communicates with the backend FastAPI server to request code generation and explanations.
+
+*   **`style.css`**:
+    *   **Purpose**: Custom styling for the application.
+    *   **Key Functionality**: Overrides default Streamlit styles to provide a polished, professional look (custom buttons, chat bubbles, metrics).
+
+### Model Server
+
+*   **`backend/model_server.py`**:
+    *   **Purpose**: Exposes the AI models via a REST API.
+    *   **Key Functionality**: A **FastAPI** application that serves endpoints (`/generate`, `/explain`). It decouples the heavy model inference from the UI thread, allowing for better scalability and separation of concerns.
+
+---
+
 ## Key Features
 
 ### Multi-Model Intelligence
