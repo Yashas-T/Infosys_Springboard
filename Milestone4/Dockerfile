@@ -6,10 +6,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install system dependencies
+# build-essential is often needed for compiling some python packages
 RUN apt-get update && apt-get install -y \
-    git \
     build-essential \
-    curl \
     dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,6 +19,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies
+# Use --no-cache-dir to keep image size down
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
